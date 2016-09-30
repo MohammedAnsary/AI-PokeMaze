@@ -4,7 +4,7 @@
   "description": "AI course project",
   "repository": "https://github.com/MohammedAnsary/AI-PokeMaze.git",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\"",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
@@ -13,7 +13,7 @@
   },
   "license": "ISC",
   "dependencies": {
-
+    "concurrently": "^3.0.0"
   },
   "devDependencies": {
     "lite-server": "^2.2.2",
