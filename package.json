@@ -4,20 +4,25 @@
   "description": "AI course project",
   "repository": "https://github.com/MohammedAnsary/AI-PokeMaze.git",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrently \"npm run wp\" \"npm run wpdev\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "wp": "webpack --watch",
+    "wpdev": "webpack-dev-server",
     "typings": "typings"
   },
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^3.0.0"
+    "concurrently": "^3.0.0",
+    "ts-loader": "^0.8.2"
   },
   "devDependencies": {
     "lite-server": "^2.2.2",
     "typescript": "^1.8.10",
-    "typings": "^1.3.2"
+    "typings": "^1.3.2",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.14.1"
   }
 }
