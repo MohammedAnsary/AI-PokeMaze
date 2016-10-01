@@ -1,6 +1,3 @@
-import { Maze } from './maze/Maze.ts';
-import { GenMaze } from './maze/GenMaze.ts';
+import { GenMaze } from './maze/gen-maze';
 
-const pokeMaze:Maze = GenMaze();
-
-console.log(pokeMaze);
+const pokeMaze = GenMaze();
