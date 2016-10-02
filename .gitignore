@@ -2,6 +2,8 @@ node_modules/
 .DS_Store
 **/app/**/*.js
 **/app/**/*.js.map
+!**/app/templates/*.js
 bundle.js
 bundle.js.map
 *.log
+typings/

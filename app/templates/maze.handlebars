@@ -1,0 +1,12 @@
+<table>
+    <tbody>
+        {{#row}}
+            <tr>
+                {{#col}}
+                <td class="{{#if this.isUp}}top {{/if}}{{#if this.isRight}} right {{/if}}{{#if this.isDown}} bottom {{/if}}{{#if this.isLeft}} left{{/if}}">
+                </td>
+                {{/col}}
+            </tr>
+        {{/row}}
+    </tbody>
+</table>
