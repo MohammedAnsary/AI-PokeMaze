@@ -9,7 +9,7 @@
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "wp": "webpack --watch",
+    "wp": "webpack",
     "wpdev": "webpack-dev-server --inline --hot",
     "typings": "typings"
   },
