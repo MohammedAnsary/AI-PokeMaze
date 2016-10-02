@@ -18,7 +18,7 @@ export class Cell {
     this.pokemonNumber = Math.floor(Math.random() * 151) + 1;
   }
   print(){
-    return `rightwall: ${this.isRight}, leftwall: ${this.isLeft}, upperwall: ${this.isUp}, downwall: ${this.isDown}`
+    return `rightwall: ${this.isRight}, leftwall: ${this.isLeft}, upperwall: ${this.isUp}, downwall: ${this.isDown}, number: ${this.pokemonNumber}`
   }
 
 }

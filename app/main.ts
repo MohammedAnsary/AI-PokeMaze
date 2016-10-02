@@ -1,10 +1,13 @@
-import { Maze } from './maze/maze';
+import { GenMaz } from './maze/gen-maze';
 import { Cell} from "./maze/cell";
 declare var Handlebars:any;
-const maze = new Maze();
-maze.genMaze(10, 30);
-const pokeMaze = maze.maze;
+
+const gen = GenMaz(20, 20);
+const pokeMaze = gen.maze;
 console.log(pokeMaze);
+
+console.log(`start: (${gen.start.row}, ${gen.start.col}) end: (${gen.end.row}, ${gen.end.col}), steps: (${gen.steps})`);
+
 renderMazeView();
 
 function renderMazeView() {

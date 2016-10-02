@@ -6,6 +6,7 @@ export class Maze {
   start:Position;
   end:Position;
   steps:number;
+
   genMaze(M,N) {
     console.log(`${M} ${N}`);
     this.maze=[];
@@ -62,12 +63,12 @@ export class Maze {
       }
 
     }
-    this.start = new Position(Math.floor(Math.random() * M-1), Math.floor(Math.random() * N-1));
-    this.end = new Position(Math.floor(Math.random() * M-1), Math.floor(Math.random() * N-1));
+    this.start = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
+    this.end = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
     while(this.start.row == this.end.row && this.start.col == this.end.col) {
-      this.end = new Position(Math.floor(Math.random() * M-1), Math.floor(Math.random() * N-1));
+      this.end = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
     }
-    this.steps = Math.floor(Math.random() * 10)+1;
+    this.steps = Math.floor(Math.random() * 10) + 1;
 
 
   }
