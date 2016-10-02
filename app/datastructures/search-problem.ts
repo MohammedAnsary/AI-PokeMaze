@@ -6,13 +6,13 @@ export class SearchProblem {
     initState:State;
     stateSpace:State[];
     goalTest:(state:State) => boolean;
-    pathCostFunc:(oldCOst:Number, operator:Operator) => number;
+    pathCostFunc:(oldCost:Number, operator:Operator) => number;
 
     constructor(operators:Operator[],
     initState:State,
     stateSpace:State[],
     goalTest:(state:State) => boolean,
-    pathCostFunc:(oldCOst:Number, operator:Operator) => number) {
+    pathCostFunc:(oldCost:Number, operator:Operator) => number) {
         this.operators = operators;
         this.initState = initState;
         this.stateSpace = stateSpace;

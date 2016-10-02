@@ -11,13 +11,11 @@ console.log(`start: (${gen.start.row}, ${gen.start.col}) end: (${gen.end.row}, $
 renderMazeView();
 
 function renderMazeView() {
-    let data = {
-        row: [
-
-        ]
-    };
     let template:(param?:any) => any = Handlebars.templates['maze'];
     let host:HTMLElement = document.getElementById('maze');
+    let data = {
+        row: []
+    };
 
     for(let i=0;i<pokeMaze.length;i++){
       let col = {col: pokeMaze[i]};
@@ -26,5 +24,3 @@ function renderMazeView() {
 
     host.innerHTML = template(data);
 }
-
-//let template = Handlebars.templates['maze'];
