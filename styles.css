@@ -2,8 +2,11 @@ table {
      border-collapse: collapse;
 }
 td {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
+}
+td img {
+    height: 45px;
 }
 td.top {
     border-top: 3px solid black;
