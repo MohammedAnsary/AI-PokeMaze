@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Pokefont;
+    src: url(app/assets/fonts/p-hollow.ttf);
+}
+h1 {
+    font-family: Pokefont;
+    text-align: center;
+    font-size: 65px;
+    margin: 0;
+}
 table {
      border-collapse: collapse;
 }
