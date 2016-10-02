@@ -1,8 +1,9 @@
-import { GenMaze } from './maze/gen-maze';
+import { Maze } from './maze/maze';
 import { Cell} from "./maze/cell";
 declare var Handlebars:any;
-
-const pokeMaze = GenMaze(10, 20);
+const maze = new Maze();
+maze.genMaze(10, 30);
+const pokeMaze = maze.maze;
 console.log(pokeMaze);
 renderMazeView();
 
