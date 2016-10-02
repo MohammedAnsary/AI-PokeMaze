@@ -1,12 +1,24 @@
+@font-face {
+    font-family: Pokefont;
+    src: url(app/assets/fonts/p-hollow.ttf);
+}
+h1 {
+    font-family: Pokefont;
+    text-align: center;
+    font-size: 65px;
+    margin: 0;
+}
 table {
      border-collapse: collapse;
 }
 td {
     width: 75px;
     height: 75px;
+    text-align: center;
 }
 td img {
-    height: 45px;
+    width: 50px;
+    max-height: 50px;
 }
 td.top {
     border-top: 3px solid black;
