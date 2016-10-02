@@ -1,14 +1,15 @@
 import { State } from './state';
+import { Operator } from './operator';
 export class Node {
     state:State;
     parent:Node;
-    operator:(oldState:State) => State;
+    operator:Operator;
     depth:number;
     pathCost:number;
 
     constructor(state:State,
     parent:Node,
-    operator:(oldState:State) => State,
+    operator:Operator,
     depth:number,
     pathCost:number) {
         this.state = state;
