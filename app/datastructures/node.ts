@@ -1,10 +1,10 @@
 import { State } from './state';
 export class Node {
-    private state:State;
-    private parent:Node;
-    private operator:(oldState:State) => State;
-    private depth:number;
-    private pathCost:number;
+    state:State;
+    parent:Node;
+    operator:(oldState:State) => State;
+    depth:number;
+    pathCost:number;
 
     constructor(state:State,
     parent:Node,
