@@ -4,9 +4,11 @@ table {
 td {
     width: 75px;
     height: 75px;
+    text-align: center;
 }
 td img {
-    height: 45px;
+    width: 50px;
+    max-height: 50px;
 }
 td.top {
     border-top: 3px solid black;
