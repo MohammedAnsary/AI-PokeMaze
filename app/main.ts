@@ -2,7 +2,7 @@ import { GenMaze } from './maze/gen-maze';
 import { Cell} from "./maze/cell";
 declare var Handlebars:any;
 
-const gen = GenMaze(20, 20);
+const gen = GenMaze(10, 30);
 const pokeMaze = gen.maze;
 console.log(pokeMaze);
 

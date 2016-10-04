@@ -3,19 +3,22 @@ import { Node } from './node';
 import { State } from './state';
 import { Operator } from './operator';
 
-export class GeneralSearch {
+export abstract class GeneralSearch {
     private nodes:Node[];
     private queuingFunc:(nodes:Node[], node:Node) => void;
+    private expandedNodes:number;
 
     constructor(queuingFunc:(nodes:Node[], node:Node) => void) {
         this.nodes = [];
         this.queuingFunc = queuingFunc;
+        this.expandedNodes = 0;
     }
 
     search(problem:SearchProblem):any {
         this.nodes.push(new Node(problem.initState, null, null, 0, 0));
         while(this.nodes.length > 0) {
             let node:Node = this.nodes.shift();
+            this.expandedNodes++;
             if(problem.goalTest(node.state))
                 return node;
             for(let i = 0; i < problem.operators.length; i++) {
