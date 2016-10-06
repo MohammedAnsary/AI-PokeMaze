@@ -7,22 +7,13 @@ import { GenMaze } from '../maze/gen-maze';
 import { Cell } from '../maze/cell';
 import { Maze } from '../maze/maze';
 
-
-/*
-operators:Operator[];
-initState:State;
-stateSpace:any;
-goalTest:(state:State) => boolean;
-pathCostFunc:(oldCost:Number, operator:Operator) => number;
-*/
-
-export const  genPokeProblem = (maze:Maze):SearchProblem => {
-    // const maze:Maze = GenMaze(M, N);
+export const  genPokeProblem = (grid:Maze):SearchProblem => {
+    const maze:Cell[][] = grid.maze;
     const iState:State = new State({
-          cell: maze.start,
-          dir: maze.dir,
-          hatch: maze.steps,
-          pokeNumber: maze.pokeNumber
+          cell: grid.start,
+          dir: grid.dir,
+          hatch: grid.steps,
+          pokeNumber: grid.pokeNumber
       });
 
     const moveForward = (state:State) => {
@@ -30,7 +21,9 @@ export const  genPokeProblem = (maze:Maze):SearchProblem => {
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokeNumber:number = state.val['pokeNumber'];
+      
       if(cell.isPokemons){
+        console.log(" Found a pokemon");
         pokeNumber--;
         cell.isPokemons = false;
       }
@@ -95,14 +88,10 @@ export const  genPokeProblem = (maze:Maze):SearchProblem => {
       let cell:Cell = state.val['cell'];
       let hatch:number = state.val['hatch'];
       let pokeNumber:number = state.val['pokeNumber'];
-      return cell == maze.end && pokeNumber <= 0 && hatch <= 0;
+      return cell == grid.end && pokeNumber <= 0 && hatch <= 0;
     }
     const pathCost = (oldCost:number, operator:Operator) => {
       return oldCost + operator.cost;
     }
     return new SearchProblem(operators, iState, maze, goalTest, pathCost);
-    //
-    // const goalTest = (state) => {
-    //   return state.cell.isPokemons || state.cell == maze.end || state.steps == 0;
-    // };
  }

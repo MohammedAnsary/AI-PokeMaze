@@ -6,9 +6,11 @@ import { SearchProblem } from '../datastructures/search-problem';
 
 export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     let queuingFunc;
+    console.log('search started');
     switch(strategy) {
         case 'BFS': {
             queuingFunc = end;
+            console.log('I am BFS');
             break;
         }
         case 'Uniform': {
@@ -23,6 +25,7 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     }
 
     let problem:SearchProblem = genPokeProblem(maze);
+    console.log("  poke problem done ");
     let searchInstance = new GeneralSearch(queuingFunc);
 
     searchInstance.search(problem);

@@ -29,7 +29,7 @@ export class Maze {
       let r = position.row;
       let cell = this.maze[r][c];
       cell.isVisted = true;
-      cell.isPokemons = (Math.random() > 0.7)? true : false ;
+      cell.isPokemons = (Math.random() > 0.9)? true : false ;
       this.pokeNumber= (cell.isPokemons)? this.pokeNumber + 1 :this.pokeNumber;
       let check = [];
       if( c > 0 && !this.maze[r][c - 1].isVisted) { check.push(Direction.Left)}
