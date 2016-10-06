@@ -21,11 +21,12 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokeNumber:number = state.val['pokeNumber'];
-      
+      console.log("move forward from state:" );
       if(cell.isPokemons){
         console.log(" Found a pokemon");
         pokeNumber--;
         cell.isPokemons = false;
+        console.log(` new poke number : ${pokeNumber}`);
       }
       if(!cell.isUp && dir == Direction.Up) {
         return new State({cell: maze[cell.position.row - 1][cell.position.col],
@@ -48,6 +49,13 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokeNumber:number = state.val['pokeNumber'];
+      console.log("move rotateRight from state:" );
+      if(cell.isPokemons){
+        console.log(" Found a pokemon");
+        pokeNumber--;
+        cell.isPokemons = false;
+        console.log(` new poke number : ${pokeNumber}`);
+      }
       if(dir == Direction.Up) {
         return new State({cell: cell,
                           dir: Direction.Right, hatch: hatch, pokeNumber: pokeNumber});
@@ -68,6 +76,13 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokeNumber:number = state.val['pokeNumber'];
+      console.log("rotate left" );
+      if(cell.isPokemons){
+        console.log(" Found a pokemon");
+        pokeNumber--;
+        cell.isPokemons = false;
+        console.log(` new poke number : ${pokeNumber}`);
+      }
       if(dir == Direction.Up) {
         return new State({cell: cell,
                           dir: Direction.Left, hatch: hatch, pokeNumber: pokeNumber});

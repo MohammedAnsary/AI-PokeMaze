@@ -15,7 +15,7 @@ export class Cell {
     this.isUp = true;
     this.isDown = true;
     this.isVisted = false;
-    this.isPokemons = false;
+    this.isPokemons = (Math.random() > 0.6)? true : false;
     this.pokemonNumber = Math.floor(Math.random() * 151) + 1;
     this.position = pos;
   }

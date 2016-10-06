@@ -20,6 +20,7 @@ export class Maze {
       this.maze[i] = [];
       for( let j = 0; j < N; ++j) {
         this.maze[i][j] = new Cell(new Position(i, j));
+        this.pokeNumber = this.maze[i][j].isPokemons ? this.pokeNumber + 1 : this.pokeNumber;
       }
     }
     let position = new Position(0, 0);
@@ -29,8 +30,6 @@ export class Maze {
       let r = position.row;
       let cell = this.maze[r][c];
       cell.isVisted = true;
-      cell.isPokemons = (Math.random() > 0.9)? true : false ;
-      this.pokeNumber= (cell.isPokemons)? this.pokeNumber + 1 :this.pokeNumber;
       let check = [];
       if( c > 0 && !this.maze[r][c - 1].isVisted) { check.push(Direction.Left)}
       if( r > 0 && !this.maze[r - 1][c].isVisted) { check.push(Direction.Up)}
