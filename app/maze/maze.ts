@@ -8,19 +8,20 @@ export class Maze {
   end:Cell;
   steps:number;
   dir:Direction;
-  pokeNumber:number;
+  pokePositions:Position[];
 
 
 
   genMaze(M,N) {
     console.log(`${M} ${N}`);
-    this.pokeNumber = 0;
+    this.pokePositions = [];
     this.maze=[];
     for( let i = 0; i < M; ++i) {
       this.maze[i] = [];
       for( let j = 0; j < N; ++j) {
         this.maze[i][j] = new Cell(new Position(i, j));
-        this.pokeNumber = this.maze[i][j].isPokemons ? this.pokeNumber + 1 : this.pokeNumber;
+        if(this.maze[i][j].isPokemons)
+            this.pokePositions.push(this.maze[i][j].position);
       }
     }
     let position = new Position(0, 0);
