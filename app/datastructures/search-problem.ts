@@ -10,7 +10,7 @@ export class SearchProblem {
 
     constructor(operators:Operator[],
     initState:State,
-    stateSpace:State[],
+    stateSpace:any,
     goalTest:(state:State) => boolean,
     pathCostFunc:(oldCost:Number, operator:Operator) => number) {
         this.operators = operators;
