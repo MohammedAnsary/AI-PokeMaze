@@ -7,7 +7,7 @@ export const end = (nodes:Node[], node:Node):void => {
 export const ordered = (nodes:Node[], node:Node):void => {
     for(let i = 0; i < nodes.length; i++) {
         if(nodes[i].pathCost > node.pathCost) {
-                nodes.splice(i, 0, node);
+                nodes = nodes.splice(i, 0, node);
                 return;
         }
     }
