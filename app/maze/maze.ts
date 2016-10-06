@@ -68,13 +68,13 @@ export class Maze {
         position = history.shift();
       }
     }
-    const startI = Math.floor(Math.random() * (M - 1));
-    const startJ = Math.floor(Math.random() * (N - 1));
-    let endI = Math.floor(Math.random() * (M - 1));
-    let endJ = Math.floor(Math.random() * (N - 1));
+    const startI = Math.floor(Math.random() * (M ));
+    const startJ = Math.floor(Math.random() * (N));
+    let endI = Math.floor(Math.random() * (M));
+    let endJ = Math.floor(Math.random() * (N));
     while(startI == endI && startJ == endJ) {
-      endI = Math.floor(Math.random() * (M - 1));
-      endJ = Math.floor(Math.random() * (N - 1));
+      endI = Math.floor(Math.random() * (M));
+      endJ = Math.floor(Math.random() * (N));
     }
     this.start = this.maze[startI][startJ];
     this.end = this.maze[endI][endJ]
