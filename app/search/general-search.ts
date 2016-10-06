@@ -1,7 +1,7 @@
-import { SearchProblem } from './search-problem';
-import { Node } from './node';
-import { State } from './state';
-import { Operator } from './operator';
+import { SearchProblem } from '../datastructures/search-problem';
+import { Node } from '../datastructures/node';
+import { State } from '../datastructures/state';
+import { Operator } from '../datastructures/operator';
 
 export abstract class GeneralSearch {
     private nodes:Node[];
