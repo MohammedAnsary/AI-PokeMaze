@@ -1,11 +1,14 @@
 import { Cell } from "./cell";
 import { Position } from "./position";
+import { Direction } from "../datastructures/direction";
 // M rows and N cols
 export class Maze {
   maze:Cell[][];
-  start:Position;
-  end:Position;
+  start:Cell;
+  end:Cell;
   steps:number;
+  dir:Direction;
+
 
   genMaze(M,N) {
     console.log(`${M} ${N}`);
@@ -13,7 +16,7 @@ export class Maze {
     for( let i = 0; i < M; ++i) {
       this.maze[i] = [];
       for( let j = 0; j < N; ++j) {
-        this.maze[i][j] = new Cell();
+        this.maze[i][j] = new Cell(new Position(i, j));
       }
     }
     let position = new Position(0, 0);
@@ -23,33 +26,33 @@ export class Maze {
       let r = position.row;
       let cell = this.maze[r][c];
       cell.isVisted = true;
-      cell.isPokemons = (Math.random() > 0.5)? true : false ;
+      cell.isPokemons = (Math.random() > 0.7)? true : false ;
       let check = [];
-      if( c > 0 && !this.maze[r][c - 1].isVisted) { check.push("L")}
-      if( r > 0 && !this.maze[r - 1][c].isVisted) { check.push("U")}
-      if( c < N - 1 && !this.maze[r][c + 1].isVisted) { check.push("R")}
-      if( r < M - 1 && !this.maze[r + 1][c].isVisted) { check.push("D")}
+      if( c > 0 && !this.maze[r][c - 1].isVisted) { check.push(Direction.Left)}
+      if( r > 0 && !this.maze[r - 1][c].isVisted) { check.push(Direction.Up)}
+      if( c < N - 1 && !this.maze[r][c + 1].isVisted) { check.push(Direction.Right)}
+      if( r < M - 1 && !this.maze[r + 1][c].isVisted) { check.push(Direction.Down)}
       if( check.length !=0){
-        const  moveDirection = check[Math.floor(Math.random() * check.length)];
-        if(moveDirection == "L"){
+        const moveDirection = check[Math.floor(Math.random() * check.length)];
+        if(moveDirection == Direction.Left){
           this.maze[r][c].isLeft = false;
           c -= 1;
           this.maze[r][c].isRight = false;
         }
 
-        if(moveDirection == "U"){
+        if(moveDirection == Direction.Up){
           this.maze[r][c].isUp = false;
           r -= 1;
           this.maze[r][c].isDown = false;
         }
 
-        if(moveDirection == "R"){
+        if(moveDirection == Direction.Right){
           this.maze[r][c].isRight = false;
           c += 1;
           this.maze[r][c].isLeft = false;
         }
 
-        if(moveDirection == "D"){
+        if(moveDirection == Direction.Down){
           this.maze[r][c].isDown = false;
           r += 1;
           this.maze[r][c].isUp = false;
@@ -61,15 +64,19 @@ export class Maze {
       } else {
         position = history.shift();
       }
-
     }
-    this.start = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
-    this.end = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
-    while(this.start.row == this.end.row && this.start.col == this.end.col) {
-      this.end = new Position(Math.floor(Math.random() * (M - 1)), Math.floor(Math.random() * (N - 1)));
+    const startI = Math.floor(Math.random() * (M - 1));
+    const startJ = Math.floor(Math.random() * (N - 1));
+    let endI = Math.floor(Math.random() * (M - 1));
+    let endJ = Math.floor(Math.random() * (N - 1));
+    while(startI == endI && startJ == endJ) {
+      endI = Math.floor(Math.random() * (M - 1));
+      endJ = Math.floor(Math.random() * (N - 1));
     }
+    this.start = this.maze[startI][startJ];
+    this.end = this.maze[endI][endJ]
     this.steps = Math.floor(Math.random() * 10) + 1;
-
-
+    const directions = [Direction.Up, Direction.Down, Direction.Left, Direction.Right];
+    this.dir = directions[Math.floor(Math.random() * 3)];
   }
 }

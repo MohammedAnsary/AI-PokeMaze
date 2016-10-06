@@ -24,7 +24,9 @@ export abstract class GeneralSearch {
             for(let i = 0; i < problem.operators.length; i++) {
                 let newState:State = problem.operators[i].apply(node.state);
                 if(newState) {
-                    let newNode = new Node(newState, node, problem.operators[i], node.depth + 1, problem.pathCostFunc(node.pathCost, problem.operators[i]));
+                    let newNode = new Node(newState, node, problem.operators[i],
+                      node.depth + 1,
+                      problem.pathCostFunc(node.pathCost, problem.operators[i]));
                     this.queuingFunc(this.nodes, newNode);
                 }
             }

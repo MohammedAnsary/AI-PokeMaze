@@ -7,8 +7,9 @@ export class Cell {
   isDown:boolean;
   isPokemons:boolean;
   pokemonNumber: number;
+  position: Position;
 
-  constructor(){
+  constructor(pos){
     this.isRight = true;
     this.isLeft = true;
     this.isUp = true;
@@ -16,6 +17,7 @@ export class Cell {
     this.isVisted = false;
     this.isPokemons = false;
     this.pokemonNumber = Math.floor(Math.random() * 151) + 1;
+    this.position = pos;
   }
   print(){
     return `rightwall: ${this.isRight}, leftwall: ${this.isLeft}, upperwall: ${this.isUp}, downwall: ${this.isDown}, number: ${this.pokemonNumber}`

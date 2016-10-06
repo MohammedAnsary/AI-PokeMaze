@@ -4,7 +4,7 @@ import { Operator } from './operator';
 export class SearchProblem {
     operators:Operator[];
     initState:State;
-    stateSpace:State[];
+    stateSpace:any;
     goalTest:(state:State) => boolean;
     pathCostFunc:(oldCost:Number, operator:Operator) => number;
 

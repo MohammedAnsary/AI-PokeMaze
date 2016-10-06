@@ -6,8 +6,8 @@ const gen = GenMaze(10, 30);
 const pokeMaze = gen.maze;
 console.log(pokeMaze);
 
-console.log(`start: (${gen.start.row}, ${gen.start.col}) end: (${gen.end.row}, ${gen.end.col}), steps: (${gen.steps})`);
-
+// console.log(`start: (${gen.start.row}, ${gen.start.col}) end: (${gen.end.row}, ${gen.end.col}), steps: (${gen.steps})`);
+console.log(`direction: ${gen.dir}`);
 renderMazeView();
 
 function renderMazeView() {
