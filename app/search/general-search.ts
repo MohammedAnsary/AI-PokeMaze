@@ -3,7 +3,7 @@ import { Node } from '../datastructures/node';
 import { State } from '../datastructures/state';
 import { Operator } from '../datastructures/operator';
 
-export abstract class GeneralSearch {
+export class GeneralSearch {
     private nodes:Node[];
     private queuingFunc:(nodes:Node[], node:Node) => void;
     private expandedNodes:number;

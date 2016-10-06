@@ -16,11 +16,8 @@ goalTest:(state:State) => boolean;
 pathCostFunc:(oldCost:Number, operator:Operator) => number;
 */
 
-export class PokeProblem {
-
-  static genPokeProblem(M, N) {
-    const maze:Maze = GenMaze(M, N);
-
+export const  genPokeProblem = (maze:Maze):SearchProblem => {
+    // const maze:Maze = GenMaze(M, N);
     const iState:State = new State({
           cell: maze.start,
           dir: maze.dir,
@@ -108,8 +105,4 @@ export class PokeProblem {
     // const goalTest = (state) => {
     //   return state.cell.isPokemons || state.cell == maze.end || state.steps == 0;
     // };
-
-
-  }
-
-}
+ }
