@@ -19,64 +19,73 @@ export class PokeProblem {
 
   static genPokeProblem(M, N) {
     const maze = GenMaze(M, N);
-    const iState = new State({
+
+    const iState:State = new State({
           cell: maze.start,
           dir: maze.dir,
-          hatch: maze.steps
+          hatch: maze.steps,
+          pokeNumber: maze.pokeNumber
       });
 
-    const moveForward = (state) => {
-      let cell:Cell = state.cell;
-      let dir:Direction = state.dir;
+    const moveForward = (state:State) => {
+      let cell:Cell = state.val['cell'];
+      let dir:Direction = state.val['dir'];
+      let hatch:number = state.val['hatch'];
+      let pokeNumber:number = state.val['pokeNumber'];
+      if(cell.isPokemons){
+        pokeNumber--;
+      }
       if(!cell.isUp && dir == Direction.Up) {
-        return new State({cell: maze[state.cell.position.row - 1][state.cell.position.col],
-                          dir: dir, hatch: maze.steps - 1});
+        return new State({cell: maze[cell.position.row - 1][cell.position.col],
+                          dir: dir, hatch: hatch - 1, pokeNumber: pokeNumber});
       } else if(!cell.isDown && dir == Direction.Down) {
-        return new State({cell: maze[state.cell.position.row + 1][state.cell.position.col],
-                          dir: dir, hatch: maze.steps - 1});
+        return new State({cell: maze[cell.position.row + 1][cell.position.col],
+                          dir: dir, hatch: hatch - 1,});
       } else if(!cell.isRight && dir == Direction.Right) {
-        return new State({cell: maze[state.cell.position.row][state.cell.position.col + 1],
-                          dir: dir, hatch: maze.steps - 1});
+        return new State({cell: maze[cell.position.row][cell.position.col + 1],
+                          dir: dir, hatch: hatch - 1});
       } else if(!cell.isLeft && dir == Direction.Left) {
-        return new State({cell: maze[state.cell.position.row][state.cell.position.col - 1],
-                          dir: dir, hatch: maze.steps - 1});
+        return new State({cell: maze[cell.position.row][cell.position.col - 1],
+                          dir: dir, hatch: hatch - 1});
       }
       return null;
     };
 
-    const rotateRight = (state) => {
-      let cell:Cell = state.cell;
-      let dir:Direction = state.dir;
+    const rotateRight = (state:State) => {
+      let cell:Cell = state.val['cell'];
+      let dir:Direction = state.val['dir'];
+      let hatch:number = state.val['hatch'];
       if(dir == Direction.Up) {
         return new State({cell: cell,
-                          dir: Direction.Right, hatch: maze.steps});
+                          dir: Direction.Right, hatch: hatch});
       } else if(dir == Direction.Down) {
         return new State({cell: cell,
-                          dir: Direction.Left, hatch: maze.steps});
+                          dir: Direction.Left, hatch: hatch});
       } else if(dir == Direction.Right) {
         return new State({cell: cell,
-                          dir: Direction.Down, hatch: maze.steps});
+                          dir: Direction.Down, hatch: hatch});
       } else {
         return new State({cell: cell,
-                          dir: Direction.Up, hatch: maze.steps});
+                          dir: Direction.Up, hatch: hatch});
       }
     }
 
-    const rotateLeft = (state) => {
-      let cell:Cell = state.cell;
-      let dir:Direction = state.dir;
+    const rotateLeft = (state:State) => {
+      let cell:Cell = state.val['cell'];
+      let dir:Direction = state.val['dir'];
+      let hatch:number = state.val['hatch'];
       if(dir == Direction.Up) {
         return new State({cell: cell,
-                          dir: Direction.Left, hatch: maze.steps});
+                          dir: Direction.Left, hatch: hatch});
       } else if(dir == Direction.Down) {
         return new State({cell: cell,
-                          dir: Direction.Right, hatch: maze.steps});
+                          dir: Direction.Right, hatch: hatch});
       } else if(dir == Direction.Right) {
         return new State({cell: cell,
-                          dir: Direction.Up, hatch: maze.steps});
+                          dir: Direction.Up, hatch: hatch});
       } else {
         return new State({cell: cell,
-                          dir: Direction.Down, hatch: maze.steps});
+                          dir: Direction.Down, hatch: hatch});
       }
      }
     //

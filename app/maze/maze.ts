@@ -8,10 +8,13 @@ export class Maze {
   end:Cell;
   steps:number;
   dir:Direction;
+  pokeNumber:number;
+
 
 
   genMaze(M,N) {
     console.log(`${M} ${N}`);
+    this.pokeNumber = 0;
     this.maze=[];
     for( let i = 0; i < M; ++i) {
       this.maze[i] = [];
@@ -27,6 +30,7 @@ export class Maze {
       let cell = this.maze[r][c];
       cell.isVisted = true;
       cell.isPokemons = (Math.random() > 0.7)? true : false ;
+      this.pokeNumber= (cell.isPokemons)? this.pokeNumber + 1 :this.pokeNumber;
       let check = [];
       if( c > 0 && !this.maze[r][c - 1].isVisted) { check.push(Direction.Left)}
       if( r > 0 && !this.maze[r - 1][c].isVisted) { check.push(Direction.Up)}
