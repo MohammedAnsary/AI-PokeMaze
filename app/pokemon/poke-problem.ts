@@ -24,7 +24,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("move forward from state:" );
       if(cell.isPokemons){
         console.log(" Found a pokemon");
-        pokeNumber--;
+        pokeNumber = pokeNumber - 1;
         cell.isPokemons = false;
         console.log(` new poke number : ${pokeNumber}`);
       }
@@ -52,7 +52,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("move rotateRight from state:" );
       if(cell.isPokemons){
         console.log(" Found a pokemon");
-        pokeNumber--;
+        pokeNumber = pokeNumber - 1;
         cell.isPokemons = false;
         console.log(` new poke number : ${pokeNumber}`);
       }
@@ -79,7 +79,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("rotate left" );
       if(cell.isPokemons){
         console.log(" Found a pokemon");
-        pokeNumber--;
+        pokeNumber = pokeNumber - 1;
         cell.isPokemons = false;
         console.log(` new poke number : ${pokeNumber}`);
       }

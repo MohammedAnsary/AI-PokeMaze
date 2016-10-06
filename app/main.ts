@@ -2,7 +2,7 @@ import { GenMaze } from './maze/gen-maze';
 import { Search } from "./search/search";
 declare var Handlebars:any;
 
-const pokeMaze = GenMaze(3, 3);
+const pokeMaze = GenMaze(2, 2);
 renderMazeView();
 console.log(pokeMaze.maze);
 Search(pokeMaze, 'BFS', false);
