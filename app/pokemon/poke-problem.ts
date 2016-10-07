@@ -16,12 +16,19 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
           hatch: grid.steps,
           pokePositions: grid.pokePositions
       });
+     const clone = (arr:any[]):any[] => {
+          let newArr = [];
+          for(let i = 0; i < arr.length; i++) {
+              newArr[i] = arr[i];
+          }
+          return newArr;
+      }
 
     const moveForward = (state:State):State => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
-      let pokePositions:Position[] = state.val['pokePositions'];
+      let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newRow:number = cell.position.row;
       let newColumn:number = cell.position.col;
       let newHatch = hatch - 1;
@@ -30,7 +37,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         let index:number = pokePositions.indexOf(cell.position);
         console.log(" Found a pokemon");
         if(index) {
-            pokePositions = pokePositions.splice(index, 1);
+            pokePositions.splice(index, 1);
         }
       }
       if(!cell.isUp && dir == Direction.Up) {
@@ -53,14 +60,14 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
-      let pokePositions:Position[] = state.val['pokePositions'];
+      let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newDirection:Direction;
       console.log("move rotateRight from state:" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
         console.log(" Found a pokemon");
         if(index) {
-            pokePositions = pokePositions.splice(index, 1);
+            pokePositions.splice(index, 1);
         }
       }
       if(dir == Direction.Up) {
@@ -80,14 +87,14 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
-      let pokePositions:Position[] = state.val['pokePositions'];
+      let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newDirection:Direction;
       console.log("rotate left" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
         console.log(" Found a pokemon");
         if(index) {
-            pokePositions = pokePositions.splice(index, 1);
+            pokePositions.splice(index, 1);
         }
       }
       if(dir == Direction.Up) {
@@ -107,7 +114,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
     const goalTest = (state:State):boolean => {
       let cell:Cell = state.val['cell'];
       let hatch:number = state.val['hatch'];
-      let pokePositions:Position[] = state.val['pokePositions'];
+      let pokePositions:Position[] = clone(state.val['pokePositions'])
       return cell == grid.end && pokePositions.length == 0 && hatch <= 0;
     }
     const pathCost = (oldCost:number, operator:Operator) => {
