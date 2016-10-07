@@ -26,8 +26,11 @@ export class GeneralSearch {
             console.log(node.state.val);
             debugger;
             this.expandedNodes++;
-            if(problem.goalTest(node.state))
+            if(problem.goalTest(node.state)) {
+                console.log('Passed goalTest');
+                console.log(`Nodes expanded: ${this.expandedNodes}`);
                 return node;
+            }
             for(let i = 0; i < problem.operators.length; i++) {
                 let newState:State = problem.operators[i].apply(node.state);
                 let parent = node;
@@ -47,6 +50,8 @@ export class GeneralSearch {
                 }
             }
         }
+        console.log('No solution')
+        console.log(`Nodes expanded: ${this.expandedNodes}`)
         return false;
     }
 }
