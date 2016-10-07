@@ -80,7 +80,7 @@ export class Maze {
     this.start = this.maze[startI][startJ];
     this.end = this.maze[endI][endJ]
     this.steps = Math.floor(Math.random() * 10) + 1;
-    const directions = [Direction.Up, Direction.Down, Direction.Left, Direction.Right];
+    const directions:Direction[] = [Direction.Up, Direction.Down, Direction.Left, Direction.Right];
     this.dir = directions[Math.floor(Math.random() * 3)];
   }
 }

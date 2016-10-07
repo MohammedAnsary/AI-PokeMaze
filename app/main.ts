@@ -5,7 +5,8 @@ declare var Handlebars:any;
 const pokeMaze = GenMaze(2, 2);
 renderMazeView();
 console.log(pokeMaze.maze);
-Search(pokeMaze, 'BFS', false);
+console.log(`End : ${JSON.stringify(pokeMaze.end)}`);
+Search(pokeMaze, 'DFS', false);
 
 // console.log(pokeMaze);
 //
