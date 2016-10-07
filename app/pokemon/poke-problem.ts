@@ -35,8 +35,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("move forward from state" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        console.log(" Found a pokemon");
-        if(index) {
+        console.log("Found a pokemon at index: " + index);
+        if(index >= 0) {
             pokePositions.splice(index, 1);
         }
       }
@@ -65,8 +65,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("move rotateRight from state:" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        console.log(" Found a pokemon");
-        if(index) {
+        console.log("Found a pokemon at index: " + index);
+        if(index >= 0) {
             pokePositions.splice(index, 1);
         }
       }
@@ -92,8 +92,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       console.log("rotate left" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        console.log(" Found a pokemon");
-        if(index) {
+        console.log("Found a pokemon at index: " + index);
+        if(index >= 0) {
             pokePositions.splice(index, 1);
         }
       }
