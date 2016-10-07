@@ -4,7 +4,7 @@ import { genPokeProblem } from '../pokemon/poke-problem';
 import { GeneralSearch } from './general-search';
 import { SearchProblem } from '../datastructures/search-problem';
 
-export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
+export const Search = (maze:Maze, strategy:string, visualise:boolean, eleminateRepeated:boolean) => {
     let queuingFunc;
     console.log('search started');
     switch(strategy) {
@@ -15,10 +15,12 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
         }
         case 'Uniform': {
             queuingFunc = ordered;
+            console.log('I am UC');
             break;
         }
         case 'DFS': {
             queuingFunc = front;
+            console.log('I am DFS');
             break;
         }
         default: {}
@@ -28,5 +30,5 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     console.log("  poke problem done ");
     let searchInstance = new GeneralSearch(queuingFunc);
 
-    searchInstance.search(problem);
+    searchInstance.search(problem, eleminateRepeated);
 }

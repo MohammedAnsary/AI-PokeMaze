@@ -5,7 +5,12 @@ declare var Handlebars:any;
 const pokeMaze = GenMaze(2, 2);
 renderMazeView();
 console.log(pokeMaze.maze);
-Search(pokeMaze, 'BFS', false);
+Search(pokeMaze, 'BFS', false, false);
+Search(pokeMaze, 'BFS', false, true);
+Search(pokeMaze, 'Uniform', false, false);
+Search(pokeMaze, 'Uniform', false, true);
+
+Search(pokeMaze, 'DFS', false, true);
 
 // console.log(pokeMaze);
 //

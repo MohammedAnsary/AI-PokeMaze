@@ -14,55 +14,52 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         hatch: grid.steps,
         pokePositions: grid.pokePositions
     });
-
+    const clone = (arr:any[]):any[] => {
+        let newArr = [];
+        for(let i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
     const moveUp = (state:State):State => {
         let cell:Cell = state.val['cell'];
         let hatch:number = state.val['hatch'];
-        let pokePositions:Position[] = state.val['pokePositions'];
+        let pokePositions:Position[] = clone(state.val['pokePositions']);
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
-        let newHatch = hatch - 1;
-        console.log("move up from state" );
+        let newHatch = hatch > 0 ? hatch - 1 :  hatch;
         if(cell.isPokemons){
             let index:number = pokePositions.indexOf(cell.position);
-            console.log("Index of found pokemon in pokePositions is : " + index);
-            if(index) {
-                pokePositions = pokePositions.splice(index, 1);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
             }
         }
-        console.log(!cell.isUp);
         if(!cell.isUp) {
             newRow = cell.position.row - 1;
 
         } else {
-            console.log('cannot move up');
             return null;
         }
         return new State({cell: maze[newRow][newColumn],
             hatch: newHatch, pokePositions: pokePositions});
     };
-
     const moveDown = (state:State):State => {
         let cell:Cell = state.val['cell'];
         let hatch:number = state.val['hatch'];
-        let pokePositions:Position[] = state.val['pokePositions'];
+        let pokePositions:Position[] = clone(state.val['pokePositions']);
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
-        let newHatch = hatch - 1;
-        console.log("move down from state" );
+        let newHatch = hatch > 0 ? hatch - 1 :  hatch;
         if(cell.isPokemons){
             let index:number = pokePositions.indexOf(cell.position);
-            console.log("Index of found pokemon in pokePositions is : " + index);
-            if(index) {
-                pokePositions = pokePositions.splice(index, 1);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
             }
         }
-        console.log(!cell.isDown);
         if(!cell.isDown) {
             newRow = cell.position.row + 1;
 
         } else {
-            console.log('cannot move down');
             return null;
         }
         return new State({cell: maze[newRow][newColumn],
@@ -72,24 +69,19 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
     const moveRight = (state:State):State => {
         let cell:Cell = state.val['cell'];
         let hatch:number = state.val['hatch'];
-        let pokePositions:Position[] = state.val['pokePositions'];
+        let pokePositions:Position[] = clone(state.val['pokePositions']);
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
-        let newHatch = hatch - 1;
-        console.log("move right from state" );
+        let newHatch = hatch > 0 ? hatch - 1 :  hatch;
         if(cell.isPokemons){
             let index:number = pokePositions.indexOf(cell.position);
-            console.log("Index of found pokemon in pokePositions is : " + index);
-            if(index) {
-                pokePositions = pokePositions.splice(index, 1);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
             }
         }
-        console.log(!cell.isRight);
         if(!cell.isRight) {
             newColumn = cell.position.col + 1;
-
         } else {
-            console.log('cannot move right');
             return null;
         }
         return new State({cell: maze[newRow][newColumn],
@@ -99,24 +91,20 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
     const moveLeft = (state:State):State => {
         let cell:Cell = state.val['cell'];
         let hatch:number = state.val['hatch'];
-        let pokePositions:Position[] = state.val['pokePositions'];
+        let pokePositions:Position[] = clone(state.val['pokePositions']);
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
-        let newHatch = hatch - 1;
-        console.log("move left from state" );
+        let newHatch = hatch > 0 ? hatch - 1 :  hatch;
         if(cell.isPokemons){
             let index:number = pokePositions.indexOf(cell.position);
-            console.log("Index of found pokemon in pokePositions is : " + index);
-            if(index) {
-                pokePositions = pokePositions.splice(index, 1);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
             }
         }
-        console.log(!cell.isLeft);
         if(!cell.isLeft) {
             newColumn = cell.position.col - 1;
 
         } else {
-            console.log('cannot move left');
             return null;
         }
         return new State({cell: maze[newRow][newColumn],
