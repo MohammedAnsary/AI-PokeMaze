@@ -31,7 +31,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newRow:number = cell.position.row;
       let newColumn:number = cell.position.col;
-      let newHatch = hatch - 1;
+      let newHatch = hatch > 0 ? hatch - 1 :  hatch;
       console.log("move forward from state" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
