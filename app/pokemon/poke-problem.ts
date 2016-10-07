@@ -17,12 +17,15 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
           pokePositions: grid.pokePositions
       });
 
-    const moveForward = (state:State) => {
+    const moveForward = (state:State):State => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = state.val['pokePositions'];
-      console.log("move forward from state:" );
+      let newRow:number = cell.position.row;
+      let newColumn:number = cell.position.col;
+      let newHatch = hatch - 1;
+      console.log("move forward from state" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
         console.log(" Found a pokemon");
@@ -31,26 +34,27 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         }
       }
       if(!cell.isUp && dir == Direction.Up) {
-        return new State({cell: maze[cell.position.row - 1][cell.position.col],
-                          dir: dir, hatch: hatch - 1, pokePositions: pokePositions});
+        newRow = cell.position.row - 1;
       } else if(!cell.isDown && dir == Direction.Down) {
-        return new State({cell: maze[cell.position.row + 1][cell.position.col],
-                          dir: dir, hatch: hatch - 1, pokePositions: pokePositions});
+        newRow = cell.position.row + 1;
       } else if(!cell.isRight && dir == Direction.Right) {
-        return new State({cell: maze[cell.position.row][cell.position.col + 1],
-                          dir: dir, hatch: hatch - 1, pokePositions: pokePositions});
+        newColumn = cell.position.col + 1;
       } else if(!cell.isLeft && dir == Direction.Left) {
-        return new State({cell: maze[cell.position.row][cell.position.col - 1],
-                          dir: dir, hatch: hatch - 1, pokePositions: pokePositions});
+        newColumn = cell.position.col - 1;
+      } else {
+        console.log('cannot move forward');
+        return null;
       }
-      return null;
+      return new State({cell: maze[newRow][newColumn],
+                 dir: dir, hatch: newHatch, pokePositions: pokePositions});
     };
 
-    const rotateRight = (state:State) => {
+    const rotateRight = (state:State):State => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = state.val['pokePositions'];
+      let newDirection:Direction;
       console.log("move rotateRight from state:" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
@@ -60,25 +64,24 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         }
       }
       if(dir == Direction.Up) {
-        return new State({cell: cell,
-                          dir: Direction.Right, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Right;
       } else if(dir == Direction.Down) {
-        return new State({cell: cell,
-                          dir: Direction.Left, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Left;
       } else if(dir == Direction.Right) {
-        return new State({cell: cell,
-                          dir: Direction.Down, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Down;
       } else {
-        return new State({cell: cell,
-                          dir: Direction.Up, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Up;
       }
+      return new State({cell: cell,
+                        dir: newDirection, hatch: hatch, pokePositions: pokePositions});
     }
 
-    const rotateLeft = (state:State) => {
+    const rotateLeft = (state:State):State => {
       let cell:Cell = state.val['cell'];
       let dir:Direction = state.val['dir'];
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = state.val['pokePositions'];
+      let newDirection:Direction;
       console.log("rotate left" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
@@ -88,22 +91,20 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         }
       }
       if(dir == Direction.Up) {
-        return new State({cell: cell,
-                          dir: Direction.Left, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Left;
       } else if(dir == Direction.Down) {
-        return new State({cell: cell,
-                          dir: Direction.Right, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Right;
       } else if(dir == Direction.Right) {
-        return new State({cell: cell,
-                          dir: Direction.Up, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Up;
       } else {
-        return new State({cell: cell,
-                          dir: Direction.Down, hatch: hatch, pokePositions: pokePositions});
+        newDirection = Direction.Down;
       }
+      return new State({cell: cell,
+                        dir: newDirection, hatch: hatch, pokePositions: pokePositions});
      }
      const operators:Operator[] = [new Operator(moveForward, 1), new Operator(rotateRight, 0),
                                   new Operator(rotateLeft, 0)];
-    const goalTest = (state:State) => {
+    const goalTest = (state:State):boolean => {
       let cell:Cell = state.val['cell'];
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = state.val['pokePositions'];
