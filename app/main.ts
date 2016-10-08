@@ -2,16 +2,10 @@ import { GenMaze } from './maze/gen-maze';
 import { Search } from "./search/search";
 declare var Handlebars:any;
 
-const pokeMaze = GenMaze(2, 2);
+const pokeMaze = GenMaze(5, 5);
 renderMazeView();
 console.log(pokeMaze.maze);
-Search(pokeMaze, 'BFS', false);
-
-// console.log(pokeMaze);
-//
-// // console.log(`start: (${gen.start.row}, ${gen.start.col}) end: (${gen.end.row}, ${gen.end.col}), steps: (${gen.steps})`);
-// console.log(`direction: ${gen.dir}`);
-
+Search(pokeMaze, 'ID', false);
 
 function renderMazeView() {
     let template:(param?:any) => any = Handlebars.templates['maze'];

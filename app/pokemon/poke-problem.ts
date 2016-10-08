@@ -16,7 +16,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
           hatch: grid.steps,
           pokePositions: grid.pokePositions
       });
-     const clone = (arr:any[]):any[] => {
+    const clone = (arr:any[]):any[] => {
           let newArr = [];
           for(let i = 0; i < arr.length; i++) {
               newArr[i] = arr[i];
@@ -32,7 +32,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let newRow:number = cell.position.row;
       let newColumn:number = cell.position.col;
       let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-      console.log("move forward from state" );
+      console.log("move forward" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
         console.log("Found a pokemon at index: " + index);
@@ -62,7 +62,7 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newDirection:Direction;
-      console.log("move rotateRight from state:" );
+      console.log("rotateRight" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
         console.log("Found a pokemon at index: " + index);
