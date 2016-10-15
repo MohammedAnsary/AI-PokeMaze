@@ -2,13 +2,13 @@ import { GenMaze } from './maze/gen-maze';
 import { Search } from "./search/search";
 declare var Handlebars:any;
 
-const pokeMaze = GenMaze(2, 2);
+const pokeMaze = GenMaze(20, 20);
 renderMazeView();
 console.log(pokeMaze.maze);
-Search(pokeMaze, 'BFS', false, false);
-Search(pokeMaze, 'BFS', false, true);
-Search(pokeMaze, 'Uniform', false, false);
-Search(pokeMaze, 'Uniform', false, true);
+// Search(pokeMaze, 'BFS', false, false);
+// Search(pokeMaze, 'BFS', false, true);
+// Search(pokeMaze, 'Uniform', false, false);
+// Search(pokeMaze, 'Uniform', false, true);
 
 Search(pokeMaze, 'DFS', false, true);
 

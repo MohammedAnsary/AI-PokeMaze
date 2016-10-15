@@ -39,7 +39,6 @@ export class GeneralSearch {
                             nonRepeated = nonRepeated && !this.objEqual(newState, oldState);
                             if(!nonRepeated) break;
                             parent = parent.parent;
-                            debugger;
                         }
                     }
                     if(!nonRepeated) continue;
