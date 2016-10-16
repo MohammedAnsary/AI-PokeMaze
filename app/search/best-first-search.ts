@@ -12,7 +12,7 @@ export const BestFirstSearch = (problem:SearchProblem,
         evalFunc(node, evalInfo);
         for(let i = 0; i < nodes.length; i++) {
             if(nodes[i].estimateCost > node.estimateCost) {
-                    nodes = nodes.splice(i, 0, node);
+                    nodes.splice(i, 0, node);
                     return;
             }
         }

@@ -20,16 +20,20 @@ export class DepthLimitedSearch {
     }
 
     search(problem:SearchProblem, depth:number):any {
+        this.expandedNodes = 0;
+        this.repeatedStates = 0; 
         this.nodes.push(new Node(problem.initState, null, null, 0, 0));
         while(this.nodes.length > 0) {
             let node:Node = this.nodes.shift();
             let newDepth:number = node.depth + 1;
             if(newDepth > depth) {
-                break;
+                continue;
             }
             this.expandedNodes++;
-            if(problem.goalTest(node.state))
+            if(problem.goalTest(node.state)) {
+                console.log(`Passed goalTest for depth: ${depth}`);
                 return node;
+            }
             for(let i = 0; i < problem.operators.length; i++) {
                 let newState:State = problem.operators[i].apply(node.state);
                 let parent:Node = node;
@@ -39,7 +43,6 @@ export class DepthLimitedSearch {
                         let oldState:State = parent.state;
                         nonRepeated = nonRepeated && !this.objEqual(newState, oldState);
                         if(!nonRepeated){
-                        //   console.log(" *********************Found repeated state *****************");
                           this.repeatedStates = this.repeatedStates + 1;
                           break;
                         }

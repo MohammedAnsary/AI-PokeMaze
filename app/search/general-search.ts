@@ -28,6 +28,7 @@ export class GeneralSearch {
             this.expandedNodes++;
             if(problem.goalTest(node.state)) {
                 console.log('Passed goalTest');
+                console.log(node.depth);
                 return node;
             }
             for(let i = 0; i < problem.operators.length; i++) {

@@ -5,10 +5,9 @@ import { GeneralSearch } from './general-search';
 import { SearchProblem } from '../datastructures/search-problem';
 import { DepthLimitedSearch } from './depth-limited-search';
 import { BestFirstSearch } from './best-first-search';
-import { Manhattan } from '../pokemon/heuristic-funcs';
+import { Manhattan, MST } from '../pokemon/heuristic-funcs';
 
 export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
-    let queuingFunc;
     let problem:SearchProblem = genPokeProblem(maze);
     // Called by BF, UC and DF.
     let doGeneralSearch = (problem:SearchProblem, queuingFunc:any):void => {
@@ -41,18 +40,15 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     console.log('Search Started');
     switch(strategy) {
         case 'BF': {
-            queuingFunc = end;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, end);
             break;
         }
         case 'UC': {
-            queuingFunc = ordered;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, ordered);
             break;
         }
         case 'DF': {
-            queuingFunc = front;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, front);
             break;
         }
         case 'ID': {
@@ -62,9 +58,33 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
         case 'GR1': {
             let info = {
                 endPoint: problem.stateSpace.end.position,
-                type: 'greedy'
+                type: 'GR'
             }
             doBestFirstSearch(problem, info, Manhattan);
+            break;
+        }
+        case 'AS1': {
+            let info = {
+                endPoint: problem.stateSpace.end.position,
+                type: 'AS'
+            }
+            doBestFirstSearch(problem, info, Manhattan);
+            break;
+        }
+        case 'GR2': {
+            let info = {
+                endPoint: problem.stateSpace.end.position,
+                type: 'GR'
+            }
+            doBestFirstSearch(problem, info, MST);
+            break;
+        }
+        case 'AS2': {
+            let info = {
+                endPoint: problem.stateSpace.end.position,
+                type: 'AS'
+            }
+            doBestFirstSearch(problem, info, MST);
             break;
         }
         default: {}

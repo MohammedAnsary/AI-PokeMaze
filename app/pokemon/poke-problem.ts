@@ -32,10 +32,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let newRow:number = cell.position.row;
       let newColumn:number = cell.position.col;
       let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-      //console.log("move forward" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        //console.log("Found a pokemon at index: " + index);
         if(index >= 0) {
             pokePositions.splice(index, 1);
         }
@@ -49,7 +47,6 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       } else if(!cell.isLeft && dir == Direction.Left) {
         newColumn = cell.position.col - 1;
       } else {
-        //console.log('cannot move forward');
         return null;
       }
       return new State({cell: maze[newRow][newColumn],
@@ -62,10 +59,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newDirection:Direction;
-      //console.log("rotateRight" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        //console.log("Found a pokemon at index: " + index);
         if(index >= 0) {
             pokePositions.splice(index, 1);
         }
@@ -89,10 +84,8 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       let hatch:number = state.val['hatch'];
       let pokePositions:Position[] = clone(state.val['pokePositions'])
       let newDirection:Direction;
-      //console.log("rotate left" );
       if(cell.isPokemons){
         let index:number = pokePositions.indexOf(cell.position);
-        //console.log("Found a pokemon at index: " + index);
         if(index >= 0) {
             pokePositions.splice(index, 1);
         }
@@ -109,8 +102,9 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
       return new State({cell: cell,
                         dir: newDirection, hatch: hatch, pokePositions: pokePositions});
      }
-    const operators:Operator[] = [new Operator(moveForward, 1), new Operator(rotateRight, 0),
-                                  new Operator(rotateLeft, 0)];
+
+     const operators:Operator[] = [new Operator(moveForward, 1), new Operator(rotateRight, 1),
+                                  new Operator(rotateLeft, 1)];
     const goalTest = (state:State):boolean => {
       let cell:Cell = state.val['cell'];
       let hatch:number = state.val['hatch'];
