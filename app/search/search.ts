@@ -6,7 +6,6 @@ import { SearchProblem } from '../datastructures/search-problem';
 import { DepthLimitedSearch } from './depth-limited-search';
 
 export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
-    let queuingFunc;
     let problem:SearchProblem = genPokeProblem(maze);
     // Called by BF, UC and DF.
     let doGeneralSearch = (problem:SearchProblem, qf:any):void => {
@@ -33,18 +32,15 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     console.log('Search Started');
     switch(strategy) {
         case 'BF': {
-            queuingFunc = end;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, end);
             break;
         }
         case 'UC': {
-            queuingFunc = ordered;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, ordered);
             break;
         }
         case 'DF': {
-            queuingFunc = front;
-            doGeneralSearch(problem, queuingFunc);
+            doGeneralSearch(problem, front);
             break;
         }
         case 'ID': {
