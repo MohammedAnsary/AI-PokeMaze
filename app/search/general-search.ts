@@ -25,12 +25,9 @@ export class GeneralSearch {
         this.nodes.push(new Node(problem.initState, null, null, 0, 0));
         while(this.nodes.length > 0) {
             let node:Node = this.nodes.shift();
-            //console.log(node.state.val);
-            //debugger;
             this.expandedNodes++;
             if(problem.goalTest(node.state)) {
                 console.log('Passed goalTest');
-                console.log(`Nodes expanded: ${this.expandedNodes}`);
                 return node;
             }
             for(let i = 0; i < problem.operators.length; i++) {

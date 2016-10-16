@@ -53,6 +53,8 @@ export class DepthLimitedSearch {
                 }
             }
         }
+        console.log(`No solution for depth: ${depth}`)
+        console.log(`Nodes expanded: ${this.expandedNodes}`)
         return false;
     }
 }
