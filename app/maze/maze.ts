@@ -16,12 +16,19 @@ export class Maze {
     console.log(`${M} ${N}`);
     this.pokePositions = [];
     this.maze=[];
+    // make max pokemon number 1/4 maze;
+    let maxPokemon:number = Math.floor( M * N * 0.25 );
     for( let i = 0; i < M; ++i) {
       this.maze[i] = [];
       for( let j = 0; j < N; ++j) {
         this.maze[i][j] = new Cell(new Position(i, j));
         if(this.maze[i][j].isPokemons)
+          if(this.pokePositions.length < maxPokemon){
             this.pokePositions.push(this.maze[i][j].position);
+          } else {
+            this.maze[i][j].isPokemons = false;
+          }
+
       }
     }
     let position = new Position(0, 0);
@@ -78,7 +85,7 @@ export class Maze {
       endJ = Math.floor(Math.random() * (N));
     }
     this.start = this.maze[startI][startJ];
-    this.end = this.maze[endI][endJ]
-    this.steps = Math.floor(Math.random() * 10) + 1;
+    this.end = this.maze[endI][endJ];
+    this.steps = Math.floor(Math.random() * (M * N * 0.5)) + 1;
   }
 }

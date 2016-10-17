@@ -58,7 +58,6 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         }
         if(!cell.isDown) {
             newRow = cell.position.row + 1;
-
         } else {
             return null;
         }
@@ -87,7 +86,6 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         return new State({cell: maze[newRow][newColumn],
             hatch: newHatch, pokePositions: pokePositions});
     };
-
     const moveLeft = (state:State):State => {
         let cell:Cell = state.val['cell'];
         let hatch:number = state.val['hatch'];
@@ -122,5 +120,5 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
     const pathCost = (oldCost:number, operator:Operator) => {
         return oldCost + operator.cost;
     }
-    return new SearchProblem(operators, iState, maze, goalTest, pathCost);
+    return new SearchProblem(operators, iState, grid, goalTest, pathCost);
  }

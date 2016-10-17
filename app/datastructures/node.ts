@@ -6,6 +6,7 @@ export class Node {
     operator:Operator;
     depth:number;
     pathCost:number;
+    estimateCost:number;
 
     constructor(state:State,
     parent:Node,
@@ -17,5 +18,6 @@ export class Node {
         this.operator = operator;
         this.depth = depth;
         this.pathCost = pathCost;
+        this.estimateCost = 0;
     }
 }
