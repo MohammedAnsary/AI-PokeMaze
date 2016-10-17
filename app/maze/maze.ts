@@ -7,10 +7,7 @@ export class Maze {
   start:Cell;
   end:Cell;
   steps:number;
-  dir:Direction;
   pokePositions:Position[];
-
-
 
   genMaze(M,N) {
     console.log(`${M} ${N}`);
@@ -86,6 +83,8 @@ export class Maze {
     }
     this.start = this.maze[startI][startJ];
     this.end = this.maze[endI][endJ];
+    this.start.isStart = true;
+    this.end.isEnd = true;
     this.steps = Math.floor(Math.random() * (M * N * 0.5)) + 1;
   }
 }

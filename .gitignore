@@ -3,6 +3,7 @@ node_modules/
 **/app/**/*.js
 **/app/**/*.js.map
 !**/app/templates/*.js
+!**/app/assets/lib/*.js
 bundle.js
 bundle.js.map
 *.log
