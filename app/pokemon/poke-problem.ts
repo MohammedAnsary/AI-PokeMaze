@@ -28,19 +28,20 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
         let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-        if(cell.isPokemons){
-            let index:number = pokePositions.indexOf(cell.position);
-            if(index >= 0) {
-                pokePositions.splice(index, 1);
-            }
-        }
         if(!cell.isUp) {
             newRow = cell.position.row - 1;
 
         } else {
             return null;
         }
-        return new State({cell: maze[newRow][newColumn],
+        let newCell = maze[newRow][newColumn];
+        if(newCell.isPokemons){
+            let index:number = pokePositions.indexOf(newCell.position);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
+            }
+        }
+        return new State({cell: newCell,
             hatch: newHatch, pokePositions: pokePositions});
     };
     const moveDown = (state:State):State => {
@@ -50,16 +51,17 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
         let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-        if(cell.isPokemons){
-            let index:number = pokePositions.indexOf(cell.position);
-            if(index >= 0) {
-                pokePositions.splice(index, 1);
-            }
-        }
         if(!cell.isDown) {
             newRow = cell.position.row + 1;
         } else {
             return null;
+        }
+        let newCell = maze[newRow][newColumn];
+        if(newCell.isPokemons){
+            let index:number = pokePositions.indexOf(newCell.position);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
+            }
         }
         return new State({cell: maze[newRow][newColumn],
             hatch: newHatch, pokePositions: pokePositions});
@@ -72,16 +74,17 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
         let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-        if(cell.isPokemons){
-            let index:number = pokePositions.indexOf(cell.position);
-            if(index >= 0) {
-                pokePositions.splice(index, 1);
-            }
-        }
         if(!cell.isRight) {
             newColumn = cell.position.col + 1;
         } else {
             return null;
+        }
+        let newCell = maze[newRow][newColumn];
+        if(newCell.isPokemons){
+            let index:number = pokePositions.indexOf(newCell.position);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
+            }
         }
         return new State({cell: maze[newRow][newColumn],
             hatch: newHatch, pokePositions: pokePositions});
@@ -93,17 +96,18 @@ export const  genPokeProblem = (grid:Maze):SearchProblem => {
         let newRow:number = cell.position.row;
         let newColumn:number = cell.position.col;
         let newHatch = hatch > 0 ? hatch - 1 :  hatch;
-        if(cell.isPokemons){
-            let index:number = pokePositions.indexOf(cell.position);
-            if(index >= 0) {
-                pokePositions.splice(index, 1);
-            }
-        }
         if(!cell.isLeft) {
             newColumn = cell.position.col - 1;
 
         } else {
             return null;
+        }
+        let newCell = maze[newRow][newColumn];
+        if(newCell.isPokemons){
+            let index:number = pokePositions.indexOf(newCell.position);
+            if(index >= 0) {
+                pokePositions.splice(index, 1);
+            }
         }
         return new State({cell: maze[newRow][newColumn],
             hatch: newHatch, pokePositions: pokePositions});

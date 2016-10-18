@@ -85,6 +85,11 @@ export class Maze {
     this.end = this.maze[endI][endJ];
     this.start.isStart = true;
     this.end.isEnd = true;
-    this.steps = Math.floor(Math.random() * (M * N * 0.5)) + 1;
+    this.steps = Math.floor(Math.random() * (M * N * 0.2)) + 1;
+    if(this.start.isPokemons) {
+        let index = this.pokePositions.indexOf(this.start.position);
+        this.pokePositions.splice(index, 1);
+        this.start.isPokemons = false;
+    }
   }
 }

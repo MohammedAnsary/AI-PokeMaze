@@ -23,10 +23,15 @@ export class GeneralSearch {
 
     search(problem:SearchProblem):any {
         this.nodes.push(new Node(problem.initState, null, null, 0, 0));
+        let min  = Infinity;
         while(this.nodes.length > 0) {
             let node:Node = this.nodes.shift();
             this.expandedNodes++;
             if(problem.goalTest(node.state)) {
+                for(let i = 0; i < this.nodes.length; i++) {
+                    min = Math.min(this.nodes[i].estimateCost, min);
+                }
+                console.log(`min possible cost: ${min}`)
                 console.log(`Passed goalTest and node depth is ${node.depth}`);
                 return node;
             }

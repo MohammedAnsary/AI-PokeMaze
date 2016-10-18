@@ -38,6 +38,7 @@ export const MST = (node:Node, information:any):void => {
     let edges = [];
     let vertexSets = [];
     let totalCost = 0;
+    let A = [];
 
     positionsArr.push(currentPosition);
     positionsArr.push(endPosition);
@@ -52,6 +53,7 @@ export const MST = (node:Node, information:any):void => {
             let y1 = positionsArr[i].row;
             let y2 = positionsArr[j].row;
             let cost = Math.abs(x1 - x2) + Math.abs(y1 - y2);
+            // let cost = Math.sqrt( (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             let edge = {
                 u: i,
                 v: j,
@@ -65,22 +67,20 @@ export const MST = (node:Node, information:any):void => {
         return a.cost - b.cost;
     });
 
-
     for(let i = 0; i < edges.length; i++) {
         let u = edges[i].u;
         let v = edges[i].v;
         let cost = edges[i].cost;
-        let setU = vertexSets[u];
-        let setV = vertexSets[v];
-        setU.sort();
-        setV.sort();
-        if(!objEqual(setU, setV)) {
+        vertexSets[u].sort();
+        vertexSets[v].sort();
+        if(!objEqual(vertexSets[u], vertexSets[v])) {
+            A.push(edges[i]);
             totalCost += cost;
-            setU = union(setU, setV);
-            for(let j = 0; j < setU.length; j++) {
+            vertexSets[u] = union(vertexSets[u], vertexSets[v]);
+            for(let j = 0; j < vertexSets[u].length; j++) {
                 if(j != u) {
-                    let vertex = setU[j];
-                     vertexSets[vertex] = setU;
+                    let vertex = vertexSets[u][j];
+                     vertexSets[vertex] = vertexSets[u];
                 }
             }
         }
