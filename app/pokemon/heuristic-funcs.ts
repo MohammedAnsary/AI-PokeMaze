@@ -19,7 +19,7 @@ function union(set1:number[], set2: number[]) {
 }
 
 export const Manhattan = (node:Node, information:any):void => {
-    let cell:Cell = node.state.val['cell'];
+    let cell:Cell = node.state.val['cel'];
     let x = cell.position.col;
     let y = cell.position.row;
     let endPoint = information.endPoint;
@@ -29,6 +29,32 @@ export const Manhattan = (node:Node, information:any):void => {
     if(information.type == 'AS')
         node.estimateCost += node.pathCost;
 }
+
+export const FD = (node:Node, information:any):void => {
+    let pokePositions:Position[] = node.state.val['pokePositions'];
+    let positionsArr:Position[] = [];
+    positionsArr.push(information.endPoint);
+    for(let i = 0; i < pokePositions.length; i++) {
+        positionsArr.push(pokePositions[i]);
+    }
+    let maxCost = 0;
+    for(let i = 0 ; i < positionsArr.length ; ++i) {
+      const x = positionsArr[i].col;
+      const y = positionsArr[i].row;
+      for(let j = i + 1 ; j < positionsArr.length; ++j) {
+        const dx = Math.abs(x - positionsArr[j].col);
+        const dy = Math.abs(y - positionsArr[j].row);
+        const manh = dx + dy;
+        if(manh > maxCost) {
+          maxCost = manh;
+        }
+      }
+    }
+    node.estimateCost = maxCost;
+    if(information.type == 'AS')
+        node.estimateCost += node.pathCost;
+}
+
 
 export const MST = (node:Node, information:any):void => {
     let currentPosition:Position = node.state.val['cell'].position;

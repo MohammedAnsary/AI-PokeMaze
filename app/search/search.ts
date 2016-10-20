@@ -5,7 +5,7 @@ import { GeneralSearch } from './general-search';
 import { SearchProblem } from '../datastructures/search-problem';
 import { DepthLimitedSearch } from './depth-limited-search';
 import { BestFirstSearch } from './best-first-search';
-import { Manhattan, MST } from '../pokemon/heuristic-funcs';
+import { Manhattan, MST, FD } from '../pokemon/heuristic-funcs';
 declare var Handlebars:any;
 declare var $:any;
 
@@ -168,6 +168,22 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
                 type: 'AS'
             }
             doBestFirstSearch(problem, info, MST);
+            break;
+        }
+        case 'GR3': {
+            let info = {
+                endPoint: problem.stateSpace.end.position,
+                type: 'GR'
+            }
+            doBestFirstSearch(problem, info, FD);
+            break;
+        }
+        case 'AS3': {
+            let info = {
+                endPoint: problem.stateSpace.end.position,
+                type: 'AS'
+            }
+            doBestFirstSearch(problem, info, FD);
             break;
         }
         default: {}

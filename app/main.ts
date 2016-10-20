@@ -1,7 +1,7 @@
 import { GenMaze } from './maze/gen-maze';
 import { Search } from "./search/search";
 
-const pokeMaze = GenMaze(6, 6);
+const pokeMaze = GenMaze(7, 6);
 console.log(pokeMaze);
 
 // console.log('Strategy: BF');
@@ -25,5 +25,11 @@ console.log(pokeMaze);
 // console.log('Strategy: GR2');
 // Search(pokeMaze, 'GR2', true);
 //
-console.log('Strategy: AS2');
-Search(pokeMaze, 'AS2', true);
+// console.log('Strategy: AS2');
+// Search(pokeMaze, 'AS2', true);
+
+// console.log('Strategy: GR3');
+// Search(pokeMaze, 'GR3', true);
+
+console.log('Strategy: AS3');
+Search(pokeMaze, 'AS3', true);
