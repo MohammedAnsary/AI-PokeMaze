@@ -16,7 +16,7 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     let doGeneralSearch = (problem:SearchProblem, queuingFunc:any):void => {
         let searchInstance = new GeneralSearch(queuingFunc);
         result = searchInstance.search(problem);
-        console.log(result);
+        // console.log(result);
         console.log(`No. of nodes: ${searchInstance.expandedNodes}`);
         console.log(`No. of repeated states: ${searchInstance.repeatedStates}`);
     }
@@ -38,7 +38,6 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
     let doBestFirstSearch = (problem:SearchProblem, information:any, evalFunc:any):void => {
         let searchInstance = BestFirstSearch(problem, information, evalFunc);
         result = searchInstance.search(problem);
-        console.log(result);
         console.log(`No. of nodes: ${searchInstance.expandedNodes}`);
         console.log(`No. of repeated states: ${searchInstance.repeatedStates}`);
     }

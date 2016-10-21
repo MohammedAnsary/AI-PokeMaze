@@ -31,7 +31,6 @@ export class GeneralSearch {
                 for(let i = 0; i < this.nodes.length; i++) {
                     min = Math.min(this.nodes[i].estimateCost, min);
                 }
-                console.log(`min possible cost: ${min}`)
                 console.log(`Passed goalTest and node depth is ${node.depth}`);
                 return node;
             }

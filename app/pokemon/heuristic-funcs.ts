@@ -19,7 +19,7 @@ function union(set1:number[], set2: number[]) {
 }
 
 export const Manhattan = (node:Node, information:any):void => {
-    let cell:Cell = node.state.val['cel'];
+    let cell:Cell = node.state.val['cell'];
     let x = cell.position.col;
     let y = cell.position.row;
     let endPoint = information.endPoint;
