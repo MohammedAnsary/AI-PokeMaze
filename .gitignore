@@ -4,7 +4,7 @@ node_modules/
 **/app/**/*.js.map
 !**/app/templates/*.js
 !**/app/assets/lib/*.js
-bundle.js
+
 bundle.js.map
 *.log
 typings/
