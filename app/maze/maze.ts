@@ -7,12 +7,24 @@ export class Maze {
   start:Cell;
   end:Cell;
   steps:number;
+  knowledgeBase:string = '';
   pokePositions:Position[];
 
   genMaze(M,N) {
+    const startI = Math.floor(Math.random() * (M ));
+    const startJ = Math.floor(Math.random() * (N));
+    let endI = Math.floor(Math.random() * (M));
+    let endJ = Math.floor(Math.random() * (N));
+    while(startI == endI && startJ == endJ) {
+        endI = Math.floor(Math.random() * (M));
+        endJ = Math.floor(Math.random() * (N));
+    }
     console.log(`${M} ${N}`);
+    this.steps = Math.floor(Math.random() * (M * N * 0.2)) + 1;
+    this.knowledgeBase += `steps(${this.steps}).\n`;
     this.pokePositions = [];
-    this.maze=[];
+    this.maze = [];
+
     // make max pokemon number 1/4 maze;
     let maxPokemon:number = Math.floor( M * N * 0.25 );
     for( let i = 0; i < M; ++i) {
@@ -20,8 +32,9 @@ export class Maze {
       for( let j = 0; j < N; ++j) {
         this.maze[i][j] = new Cell(new Position(i, j));
         if(this.maze[i][j].isPokemons)
-          if(this.pokePositions.length < maxPokemon){
+          if(this.pokePositions.length < maxPokemon && i != startI && j != startJ){
             this.pokePositions.push(this.maze[i][j].position);
+            this.knowledgeBase += `pokemon(loc(${i}, ${j}), s0).\n`;
           } else {
             this.maze[i][j].isPokemons = false;
           }
@@ -46,24 +59,28 @@ export class Maze {
           this.maze[r][c].isLeft = false;
           c -= 1;
           this.maze[r][c].isRight = false;
+          this.knowledgeBase += `path(loc(${r}, ${c + 1}), loc(${r}, ${c})).\n`;
         }
 
         if(moveDirection == Direction.Up){
           this.maze[r][c].isUp = false;
           r -= 1;
           this.maze[r][c].isDown = false;
+           this.knowledgeBase += `path(loc(${r + 1}, ${c}), loc(${r}, ${c})).\n`;
         }
 
         if(moveDirection == Direction.Right){
           this.maze[r][c].isRight = false;
           c += 1;
           this.maze[r][c].isLeft = false;
+          this.knowledgeBase += `path(loc(${r}, ${c - 1}), loc(${r}, ${c})).\n`;
         }
 
         if(moveDirection == Direction.Down){
           this.maze[r][c].isDown = false;
           r += 1;
           this.maze[r][c].isUp = false;
+          this.knowledgeBase += `path(loc(${r - 1}, ${c}), loc(${r}, ${c})).\n`;
         }
         position = new Position(r, c);
 
@@ -73,23 +90,12 @@ export class Maze {
         position = history.shift();
       }
     }
-    const startI = Math.floor(Math.random() * (M ));
-    const startJ = Math.floor(Math.random() * (N));
-    let endI = Math.floor(Math.random() * (M));
-    let endJ = Math.floor(Math.random() * (N));
-    while(startI == endI && startJ == endJ) {
-      endI = Math.floor(Math.random() * (M));
-      endJ = Math.floor(Math.random() * (N));
-    }
+
+    this.knowledgeBase += `at(loc(${startI}, ${startJ}), ${this.steps}, s0).\n`;
+    this.knowledgeBase += `end(loc(${endI}, ${endJ})).`;
     this.start = this.maze[startI][startJ];
     this.end = this.maze[endI][endJ];
     this.start.isStart = true;
     this.end.isEnd = true;
-    this.steps = Math.floor(Math.random() * (M * N * 0.2)) + 1;
-    if(this.start.isPokemons) {
-        let index = this.pokePositions.indexOf(this.start.position);
-        this.pokePositions.splice(index, 1);
-        this.start.isPokemons = false;
-    }
   }
 }

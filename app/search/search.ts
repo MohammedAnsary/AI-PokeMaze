@@ -67,8 +67,8 @@ export const Search = (maze:Maze, strategy:string, visualise:boolean) => {
             result = result.parent;
         }
 
-        let playerOffsetTop = 115;
-        let playerOffsetLeft = 30;
+        let playerOffsetTop = $('#0_0').offset().top + 27;
+        let playerOffsetLeft = $('#0_0').offset().left + 21;
         let step = 75;
 
         let moveCharacter = () => {
